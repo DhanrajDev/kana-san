@@ -1,17 +1,6 @@
 const { ActionRowBuilder, ButtonBuilder, SlashCommandBuilder } = require('discord.js');
 const Booru = require('booru');
 
-// Constants for button styles
-const ButtonStyles = {
-    PRIMARY: 1,
-    LINK: 5
-};
-
-// Create button instances
-const back = new ButtonBuilder().setLabel('◀').setStyle(ButtonStyles.PRIMARY).setCustomId('b1').setDisabled(true);
-const ahead = new ButtonBuilder().setLabel('▶').setStyle(ButtonStyles.PRIMARY).setCustomId('b2');
-const post = new ButtonBuilder().setLabel('post').setStyle(ButtonStyles.LINK);
-
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('safebooru')
@@ -36,6 +25,9 @@ module.exports = {
             }
 
             // Set post URL for the initial result
+            const back = new ButtonBuilder().setLabel('◀').setStyle(1).setCustomId('b1').setDisabled(true);
+            const ahead = new ButtonBuilder().setLabel('▶').setStyle(1).setCustomId('b2');
+            const post = new ButtonBuilder().setLabel('post').setStyle(5).setURL(results[0].postView);
             post.setURL(results[0].postView);
 
             const buttonRow = new ActionRowBuilder().addComponents(back, ahead, post);

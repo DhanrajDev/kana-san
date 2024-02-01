@@ -55,7 +55,6 @@ module.exports = {
 			const reply = await interaction.reply({ content: `<@${interaction.user.id}> challenges <@${chUser.id}> for rock-paper-scissors.`, components: [buttonrow] });
 			const Collector = reply.createMessageComponentCollector({ componentType: ComponentType.Button, time: 60000 });
 			Collector.on('collect', (i) => {
-				i.deferUpdate();
 				if (i.user.id === interaction.user.id) {
 					if (!usermove) { usermove = i.customId; i.reply({ content: `You chose ${usermove}`, ephemeral: true }) }
 				} else if (i.user.id === chUser.id) {
